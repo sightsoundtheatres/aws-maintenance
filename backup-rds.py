@@ -31,6 +31,7 @@ import botocore
 SOURCE_REGION = os.environ.get("SOURCE_REGION")
 TARGET_REGION = os.environ.get("TARGET_REGION")
 KMS_KEY_ID = os.environ.get("KMS_KEY_ID", "")
+TARGET_OPTION_GROUP_NAME = os.environ.get("TARGET_OPTION_GROUP_NAME", "")
 
 # Global clients
 SOURCE_CLIENT = boto3.client("rds", SOURCE_REGION)
@@ -178,7 +179,8 @@ def copy_latest_snapshot(account_id, instance_name, is_aurora):
                     TargetDBSnapshotIdentifier=copy_name,
                     CopyTags=True,
                     KmsKeyId=KMS_KEY_ID,
-                    SourceRegion=SOURCE_REGION  # Ref: https://github.com/boto/botocore/issues/1273
+                    SourceRegion=SOURCE_REGION,  # Ref: https://github.com/boto/botocore/issues/1273
+                    OptionGroupName=OPTION_GROUP_NAME
                 )
 
             # Check the status of the copy
