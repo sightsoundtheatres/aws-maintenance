@@ -40,6 +40,7 @@
                     },
                     "Parameters": [
                         "TargetRegionParameter",
+                        "TargetOptionGroupNameParameter",
                         "S3BucketParameter",
                         "SourceZipParameter"
                     ]
@@ -132,6 +133,10 @@
             "ConstraintDescription": "The target region needs to be valid AWS region, for example: us-east-1",
             "Description": "Region where to store the copies of snapshots (for example: eu-central-1)",
             "Type": "String"
+        },
+        "TargetOptionGroupNameParameter": {
+            "Description": "Name of the option group in the target region to assign to the snapshot",
+            "Type": "String"
         }
     },
     "Resources": {
@@ -196,6 +201,9 @@
                         },
                         "TARGET_REGION": {
                             "Ref": "TargetRegionParameter"
+                        },
+                        "TARGET_OPTION_GROUP_NAME": {
+                            "Ref": "TargetOptionGroupNameParameter"
                         }
                     }
                 },
