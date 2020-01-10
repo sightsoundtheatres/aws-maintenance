@@ -180,7 +180,7 @@ def copy_latest_snapshot(account_id, instance_name, is_aurora):
                     CopyTags=True,
                     KmsKeyId=KMS_KEY_ID,
                     SourceRegion=SOURCE_REGION,  # Ref: https://github.com/boto/botocore/issues/1273
-                    OptionGroupName=OPTION_GROUP_NAME
+                    OptionGroupName=TARGET_OPTION_GROUP_NAME
                 )
 
             # Check the status of the copy
